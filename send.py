@@ -15,11 +15,10 @@ ser = serial.Serial(
 
 
 while 1:
-  #write
+  # Transmit your message
   s = input('Please type your message: ')
   s = s + '\n'
   ser.write(s.encode())
-  print(s)
   time.sleep(1)
 
 

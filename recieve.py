@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
+from ast import Num
 import time
 import serial
+import threading
 
 ser = serial.Serial(
   port = '/dev/ttyS0',
@@ -12,7 +14,20 @@ ser = serial.Serial(
   timeout = 1
 )
 
+num = 'meh'
+
+def recieve(arg1):
+    # Recieve your message
+    x = ser.readline()
+    while (x.decode() == ''):
+        x = ser.readline()
+    num = x.decode()
+    #return x.decode()
+    
+
+t = threading.Thread(target=recieve, args=(1,), daemon=True).start()
+
+
 while 1:
-  #read
-  x=ser.readline()
-  print (x.decode())
+    print(num)
+    time.sleep(1)
