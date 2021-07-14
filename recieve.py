@@ -35,10 +35,12 @@ def background(arg1):
 def foreground(arg1):
     while 1:
         global message
+        wasRead = False
         # prints out the message when you press enter
         #input('Press Enter')
-        while (message != None):
+        while (message != None and wasRead == False):
             print(message)
+            wasRead = True
         time.sleep(.1)
 
 
