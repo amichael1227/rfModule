@@ -46,6 +46,7 @@ def getAndSave(arg1):
 def action(arg1):
     global message
     global wasRead
+    global state
     while 1:
 
         while (message != None and wasRead == False):
