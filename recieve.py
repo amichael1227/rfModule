@@ -30,10 +30,11 @@ def recieve(arg1):
 
 # foreground
 def foreground(arg1):
-    #global num
-    print('foreground')
-    input('Press Enter')
-    print(num)
+    while 1:
+        #global num
+        print('foreground')
+        input('Press Enter')
+        print(num)
 
 
 b = threading.Thread(name='background', target=recieve, args=(1,), daemon=True)
