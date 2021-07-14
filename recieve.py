@@ -21,8 +21,8 @@ message = None
 
 # Background thread
 def background(arg1):
+    global message
     while 1:
-        global message
         # Reads and decodes the message 
         x = ser.readline()
         while (x.decode() == ''):
@@ -33,11 +33,10 @@ def background(arg1):
 
 # Foreground thread
 def foreground(arg1):
+    global message
+    wasRead = False
     while 1:
-        global message
-        wasRead = False
-        # prints out the message when you press enter
-        #input('Press Enter')
+
         while (message != None and wasRead == False):
             print(message)
             wasRead = True
