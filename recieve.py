@@ -25,8 +25,8 @@ def background(arg1):
         global message
         # Reads and decodes the message 
         x = ser.readline()
-        # while (x.decode() == ''):
-        #     x = ser.readline()
+        while (x.decode() == ''):
+             x = ser.readline()
         message = x.decode()
         time.sleep(.1)
         
