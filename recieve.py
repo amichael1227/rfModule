@@ -68,7 +68,8 @@ def action(arg1):
             print(message)
         else:
             #
-            print(message)
+            #print(message)
+            1 == 1
 
 g = threading.Thread(name='getAndSave', target=getAndSave, args=(1,))
 a = threading.Thread(name='action', target=action, args=(1,))
