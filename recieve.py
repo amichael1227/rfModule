@@ -37,7 +37,7 @@ def foreground(arg1):
         global message
         # prints out the message when you press enter
         #input('Press Enter')
-        while (message != ''):
+        while (message != None):
             print(message)
         time.sleep(.1)
 
