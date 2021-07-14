@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# Import libraries we need
 import time
 import serial
 
@@ -13,7 +14,7 @@ ser = serial.Serial(
 )
 
 
-
+# Sets up the serial port for our RF Modules
 while 1:
   # Transmit your message
   s = input('Please type your message: ')
