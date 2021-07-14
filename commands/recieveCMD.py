@@ -31,6 +31,7 @@ state = None
 
 # Function to get and decode the message
 def readAndDecode():
+    global message
     x = ser.readline()
     while (x.decode() == ''):
         x = ser.readline()
