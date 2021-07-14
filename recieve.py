@@ -17,17 +17,19 @@ ser = serial.Serial(
 )
 
 
-
+# Define the states
 class State():
     IDLE = 0
     LED_ON = 1
+    EMPTY = 2
 
 
-# Creates the global variable for the message we are getting
-message = None
-wasRead = False
-state = State.IDLE
+# Creates the global variables needed later
+message = ''
+state = State.EMPTY
 
+
+# Function to get and decode the message
 def readAndDecode():
     global message
     x = ser.readline()
@@ -35,48 +37,36 @@ def readAndDecode():
         x = ser.readline()
         message = x.decode()
 
-# getAndSave thread
-def getAndSave(arg1):
-    global message
-    while 1:
-        readAndDecode()
-        
 
-# action thread
-def action(arg1):
+# Function to set a state based on the message 
+def setState():
     global message
-    global wasRead
     global state
     while 1:
         time.sleep(0.5)
-
-        #while (message != None and wasRead == False):
+        readAndDecode()
+        # Set the state based on the message
         if(message.upper == "IDLE"):
             state = State.IDLE
         elif(message.upper == "LED_ON"):
             state = State.LED_ON
         else:
-            1 == 1 #do nothing
+            continue # Do nothing
+        
 
-        print(message)
-#            wasRead = True
-
+# Function to perform actions based on the state
+def action():
+    global message
+    global state
+    while 1:
+        # Depending on the state, do a thing
         if(state == State.IDLE):
-            #
-            #print(message)
-            1 == 1
+            print(message) 
         elif(state == State.LED_ON):
-            #
             print(message)
         else:
-            #
-            print(message)
+            continue # Do nothing
 
-
-g = threading.Thread(name='getAndSave', target=getAndSave, args=(1,))
-a = threading.Thread(name='action', target=action, args=(1,))
-
-
-
-g.start()
-a.start()
+# Create and start the threads
+getAndSaveThread = threading.Thread(name='getAndSave', target=setState, args=(1,)).start()
+actionThread = threading.Thread(name='action', target=action, args=(1,)).start()

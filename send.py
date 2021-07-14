@@ -4,6 +4,8 @@
 import time
 import serial
 
+
+# Sets up the serial port for our RF Modules
 ser = serial.Serial(
   port = '/dev/ttyS0',
   baudrate = 9600,
@@ -20,6 +22,3 @@ while 1:
   s = input('Please type your message: ')
   s = s + '\n'
   ser.write(s.encode())
-
-
-
