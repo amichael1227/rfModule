@@ -22,11 +22,12 @@ class State():
     IDLE = 0
     LED_ON = 1
     EMPTY = 2
+    INVALID = 3
 
 
 # Creates the global variables needed later
 message = ''
-state = State.EMPTY
+state = State.IDLE
 
 
 # Function to get and decode the message
@@ -35,7 +36,7 @@ def readAndDecode():
     x = ser.readline()
     while (x.decode() == ''):
         x = ser.readline()
-        message = x.decode()
+    message = x.decode()
 
 
 # Function to set a state based on the message 
@@ -43,8 +44,9 @@ def setState(arg1):
     global message
     global state
     while 1:
-        time.sleep(0.5)
+        time.sleep(1)
         readAndDecode()
+        print(message.upper)
         # Set the state based on the message
         if(message.upper == "IDLE"):
             state = State.IDLE
@@ -59,16 +61,14 @@ def action(arg1):
     global message
     global state
     while 1:
-        time.sleep(0.5)
+        time.sleep(1)
         # Depending on the state, do a thing
         if(state == State.IDLE):
-            pass #print(message) 
+            pass
         elif(state == State.LED_ON):
             print('LED_ON')
         elif(state == State.EMPTY):
             print('EMPTY')
-        else:
-            state = State.IDLE 
 
 
 # Create and start the threads
