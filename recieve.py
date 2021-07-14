@@ -18,32 +18,28 @@ num = 'meh'
 
 # background
 def recieve(arg1):
-    global num
-    # Recieve your message
-    x = ser.readline()
-    while (x.decode() == ''):
+    while 1:
+        #global num
+        # Recieve your message
         x = ser.readline()
-    num = x.decode()
-    #return x.decode()
-    
+        while (x.decode() == ''):
+            x = ser.readline()
+        num = x.decode()
+        #return x.decode()
+        
 
 # foreground
 def foreground(arg1):
-    global num
+    #global num
     print('foreground')
     input('Press Enter')
     print(num)
 
-b = threading.Thread(target=recieve, args=(1,), daemon=True)
-f = threading.Thread(name='foreground', target=foreground, args=(1,), daemon=True)
 
+b = threading.Thread(name='background', target=recieve, args=(1,), daemon=True)
+f = threading.Thread(name='foreground', target=foreground, args=(1,), daemon=True)
 
 
 
 b.start()
 f.start()
-
-
-#while 1:
-#    print(num)
-#    time.sleep(1)
