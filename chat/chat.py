@@ -4,6 +4,7 @@
 import time
 import serial
 import threading
+import sys
 
 # Sets up the serial port for our RF Modules
 ser = serial.Serial(
@@ -30,9 +31,10 @@ def readAndDecode():
 def send(arg1):
     # Transmit your message
     while 1:
-        s = input('Please type your message: ')
+        s = sys.stdin.read(1)
         s = s + '\n'
         ser.write(s.encode())
+        time.sleep(0.25)
 
 def recieve(arg1):
     global message
@@ -42,6 +44,7 @@ def recieve(arg1):
         message = message.replace('\n', '').upper()
         message = readAndDecode()
         print(message)
+        time.sleep(0.25)
 
 
 # Create and start the threads
