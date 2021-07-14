@@ -32,7 +32,7 @@ def send(arg1):
     # Transmit your message
     print('Transmitting...')
     while 1:
-        s = sys.stdin.read(1)
+        s = sys.stdin.readline()
         s = s + '\n'
         ser.write(s.encode())
         time.sleep(0.25)
@@ -43,7 +43,7 @@ def recieve(arg1):
     while 1:
         # Get the decoded message and format it
         readAndDecode()
-        message = message.replace('\n', '').upper()
+        message = message.replace('\n', '')
         print(message)
         time.sleep(0.25)
 
