@@ -62,11 +62,11 @@ def action(arg1):
         time.sleep(0.5)
         # Depending on the state, do a thing
         if(state == State.IDLE):
-            1 == 1#print(message) 
+            pass #print(message) 
         elif(state == State.LED_ON):
-            print(message)
+            print('LED_ON')
         elif(state == State.EMPTY):
-            print(message)
+            print('EMPTY')
         else:
             state = State.IDLE 
 
