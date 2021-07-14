@@ -60,15 +60,15 @@ def action(arg1):
             print(message)
             wasRead = True
 
-    if(message == State.IDLE):
-        #
-        print(message)
-    elif(message == State.LED_ON):
-        #
-        print(message)
-    else:
-        #
-        print(message)
+        if(state == State.IDLE):
+            #
+            print(message)
+        elif(state == State.LED_ON):
+            #
+            print(message)
+        else:
+            #
+            print(message)
 
 g = threading.Thread(name='getAndSave', target=getAndSave, args=(1,))
 a = threading.Thread(name='action', target=action, args=(1,))
