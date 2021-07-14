@@ -25,8 +25,8 @@ def background(arg1):
         global message
         # Reads and decodes the message 
         x = ser.readline()
-        while (x.decode() == ''):
-            x = ser.readline()
+        # while (x.decode() == ''):
+        #     x = ser.readline()
         message = x.decode()
         time.sleep(.1)
         
@@ -36,8 +36,9 @@ def foreground(arg1):
     while 1:
         global message
         # prints out the message when you press enter
-        input('Press Enter')
-        print(message)
+        #input('Press Enter')
+        while (message != ''):
+            print(message)
         time.sleep(.1)
 
 
