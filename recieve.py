@@ -46,13 +46,13 @@ def setState(arg1):
     while 1:
         time.sleep(1)
         readAndDecode()
-        print(message.upper)
+        print(message.upper())
         # Set the state based on the message
-        if(message.upper == "IDLE"):
+        if(message.upper() == "IDLE"):
             state = State.IDLE
-        elif(message.upper == "LED_ON"):
+        elif(message.upper() == "LED_ON"):
             state = State.LED_ON
-        elif(message.upper == "EMPTY"):
+        elif(message.upper() == "EMPTY"):
             state = State.EMPTY
         
 
