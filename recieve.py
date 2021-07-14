@@ -48,17 +48,18 @@ def action(arg1):
     global wasRead
     global state
     while 1:
+        time.sleep(0.5)
 
-        while (message != None and wasRead == False):
-            if(message.upper == "IDLE"):
-                state = State.IDLE
-            elif(message.upper == "LED_ON"):
-                state = State.LED_ON
-            else:
-                1 == 1 #do nothing
+        #while (message != None and wasRead == False):
+        if(message.upper == "IDLE"):
+            state = State.IDLE
+        elif(message.upper == "LED_ON"):
+            state = State.LED_ON
+        else:
+            1 == 1 #do nothing
 
-            print(message)
-            wasRead = True
+        print(message)
+#            wasRead = True
 
         if(state == State.IDLE):
             #
@@ -70,7 +71,7 @@ def action(arg1):
         else:
             #
             print(message)
-]
+
 
 g = threading.Thread(name='getAndSave', target=getAndSave, args=(1,))
 a = threading.Thread(name='action', target=action, args=(1,))
