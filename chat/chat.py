@@ -54,4 +54,6 @@ try:
 # Graceful exit
 except (KeyboardInterrupt, SystemExit):
     print ("Exiting.")
+    sendThread.stop()
+    recieveThread.stop()
     exit
