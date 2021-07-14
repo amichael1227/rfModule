@@ -16,7 +16,9 @@ ser = serial.Serial(
 
 num = 'meh'
 
+# background
 def recieve(arg1):
+    global num
     # Recieve your message
     x = ser.readline()
     while (x.decode() == ''):
@@ -25,9 +27,23 @@ def recieve(arg1):
     #return x.decode()
     
 
-t = threading.Thread(target=recieve, args=(1,), daemon=True).start()
-
-
-while 1:
+# foreground
+def foreground(arg1):
+    global num
+    print('foreground')
+    input('Press Enter')
     print(num)
-    time.sleep(1)
+
+b = threading.Thread(target=recieve, args=(1,), daemon=True)
+f = threading.Thread(name='foreground', target=foreground, args=(1,), daemon=True)
+
+
+
+
+b.start()
+f.start()
+
+
+#while 1:
+#    print(num)
+#    time.sleep(1)
