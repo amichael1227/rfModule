@@ -46,8 +46,12 @@ def recieve(arg1):
         print(message)
         time.sleep(0.25)
 
+try:
+    # Create and start the threads
+    sendThread = threading.Thread(name='getAndSave', target=send, args=(1,)).start()
+    recieveThread = threading.Thread(name='action', target=recieve, args=(1,)).start()
 
-# Create and start the threads
-sendThread = threading.Thread(name='getAndSave', target=send, args=(1,)).start()
-recieveThread = threading.Thread(name='action', target=recieve, args=(1,)).start()
-
+# Graceful exit
+except (KeyboardInterrupt, SystemExit):
+    print ("Exiting.")
+    exit
