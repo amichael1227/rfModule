@@ -52,7 +52,6 @@ def setState(arg1):
             state = State.LED_ON
         elif(message.upper == "EMPTY"):
             state = State.EMPTY
-
         
 
 # Function to perform actions based on the state
@@ -63,9 +62,13 @@ def action(arg1):
         time.sleep(0.5)
         # Depending on the state, do a thing
         if(state == State.IDLE):
-            print(message) 
+            1 == 1#print(message) 
         elif(state == State.LED_ON):
             print(message)
+        elif(state == State.EMPTY):
+            print(message)
+        else:
+            state = State.IDLE 
 
 
 # Create and start the threads
