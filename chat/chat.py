@@ -33,7 +33,6 @@ def send(arg1):
     print('Transmitting...')
     while 1:
         s = sys.stdin.readline()
-        s = s + '\n'
         ser.write(s.encode())
         time.sleep(0.25)
 
