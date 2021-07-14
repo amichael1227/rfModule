@@ -18,35 +18,37 @@ ser = serial.Serial(
 
 # Creates the global variable for the message we are getting
 message = None
+wasRead = False
 
-# Background thread
-def background(arg1):
+
+def readAndDecode():
+    global message
+    x = ser.readline()
+    while (x.decode() == ''):
+        x = ser.readline()
+        message = x.decode()
+
+# getAndSave thread
+def getAndSave(arg1):
     global message
     while 1:
-        # Reads and decodes the message 
-        x = ser.readline()
-        while (x.decode() == ''):
-             x = ser.readline()
-        message = x.decode()
-        time.sleep(.1)
+        readAndDecode()
         
 
-# Foreground thread
-def foreground(arg1):
+# action thread
+def action(arg1):
     global message
-    wasRead = False
+    global wasRead
     while 1:
-
         while (message != None and wasRead == False):
             print(message)
             wasRead = True
-        time.sleep(.1)
 
 
-b = threading.Thread(name='background', target=background, args=(1,))
-f = threading.Thread(name='foreground', target=foreground, args=(1,))
+g = threading.Thread(name='getAndSave', target=getAndSave, args=(1,))
+a = threading.Thread(name='action', target=action, args=(1,))
 
 
 
-b.start()
-f.start()
+g.start()
+a.start()

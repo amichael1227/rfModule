@@ -20,7 +20,6 @@ while 1:
   s = input('Please type your message: ')
   s = s + '\n'
   ser.write(s.encode())
-  time.sleep(1)
 
 
 
