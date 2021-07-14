@@ -30,7 +30,7 @@ state = State.EMPTY
 
 
 # Function to get and decode the message
-def readAndDecode():
+def readAndDecode(arg1):
     global message
     x = ser.readline()
     while (x.decode() == ''):
@@ -39,7 +39,7 @@ def readAndDecode():
 
 
 # Function to set a state based on the message 
-def setState():
+def setState(arg1):
     global message
     global state
     while 1:
@@ -55,7 +55,7 @@ def setState():
         
 
 # Function to perform actions based on the state
-def action():
+def action(arg1):
     global message
     global state
     while 1:
