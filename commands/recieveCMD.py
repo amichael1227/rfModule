@@ -49,8 +49,7 @@ def setState(arg1):
         # Get the decoded message and format it
         readAndDecode()
         message = message.replace('\n', '').upper()
-        message = readAndDecode()
-
+        
         # Set the state based on the message
         if(message == "IDLE"):
             state = State.IDLE

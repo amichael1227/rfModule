@@ -30,6 +30,7 @@ def readAndDecode():
 
 def send(arg1):
     # Transmit your message
+    print('Transmitting...')
     while 1:
         s = sys.stdin.read(1)
         s = s + '\n'
@@ -38,11 +39,11 @@ def send(arg1):
 
 def recieve(arg1):
     global message
+    print('Recieving...')
     while 1:
         # Get the decoded message and format it
         readAndDecode()
         message = message.replace('\n', '').upper()
-        message = readAndDecode()
         print(message)
         time.sleep(0.25)
 
