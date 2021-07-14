@@ -30,7 +30,7 @@ state = State.EMPTY
 
 
 # Function to get and decode the message
-def readAndDecode(arg1):
+def readAndDecode():
     global message
     x = ser.readline()
     while (x.decode() == ''):
@@ -50,6 +50,8 @@ def setState(arg1):
             state = State.IDLE
         elif(message.upper == "LED_ON"):
             state = State.LED_ON
+        elif(message.upper == "EMPTY"):
+            state = State.EMPTY
         else:
             continue # Do nothing
         
@@ -59,6 +61,7 @@ def action(arg1):
     global message
     global state
     while 1:
+        time.sleep(0.5)
         # Depending on the state, do a thing
         if(state == State.IDLE):
             print(message) 
