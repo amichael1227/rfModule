@@ -52,8 +52,7 @@ def setState(arg1):
             state = State.LED_ON
         elif(message.upper == "EMPTY"):
             state = State.EMPTY
-        else:
-            continue # Do nothing
+
         
 
 # Function to perform actions based on the state
@@ -67,8 +66,7 @@ def action(arg1):
             print(message) 
         elif(state == State.LED_ON):
             print(message)
-        else:
-            continue # Do nothing
+
 
 # Create and start the threads
 getAndSaveThread = threading.Thread(name='getAndSave', target=setState, args=(1,)).start()
