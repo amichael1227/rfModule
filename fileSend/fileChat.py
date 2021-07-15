@@ -30,6 +30,15 @@ ser = serial.Serial(
 )
 
 
+# Function to get and decode the message
+def readAndDecode():
+    global message
+    x = ser.readline()
+    while (x.decode() == ''):
+        x = ser.readline()
+    message = x.decode()
+
+
 # Defines the function for getting a file
 def getc(size, timout = 1):
   return ser.read(size) or None
@@ -41,9 +50,10 @@ def putc(data, timeout = 1):
 
 # Defines function to transmit a file
 def transmit(arg1):
-    print("Transmitting, please type file path...")
+    print("Transmitting...")
     while 1:
-        file = sys.stdin.readline()
+        file = input("Please type file path...")
+        fileName = ''
         while 1:
             stream = open(file, 'rb')
             modem.send(stream)
@@ -52,11 +62,9 @@ def transmit(arg1):
 def recieve(arg1):
     print("Recieving... \n")
     while 1:
-      try:
         stream = open('output.txt', 'wb')
         modem.recv(stream)
-      except:
-        pass
+
 
 
 # Define the modem
