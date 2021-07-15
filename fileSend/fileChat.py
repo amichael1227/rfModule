@@ -52,8 +52,11 @@ def transmit(arg1):
 def recieve(arg1):
     print("Recieving... \n")
     while 1:
+      try:
         stream = open('output.txt', 'wb')
         modem.recv(stream)
+      except:
+        pass
 
 
 # Define the modem
