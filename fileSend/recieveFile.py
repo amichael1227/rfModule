@@ -44,7 +44,7 @@ def readAndDecode():
 # Function to recieve the file name
 def getFileName():
     fileName = readAndDecode()
-    fileName = fileName.replace('\n', '') + "/" + incomingPath
+    fileName = fileName.replace('\n', '') + incomingPath
     time.sleep(1)
 
 
@@ -63,7 +63,7 @@ modem = XMODEM(getc, putc)
 
 
 # Gets and saves the file
-getFileName()
-stream = open('output.txt', 'wb')
+fileName = getFileName()
+stream = open(fileName, 'wb')
 modem.recv(stream)
 print("File recieved!")
