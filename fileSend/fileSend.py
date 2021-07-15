@@ -12,10 +12,8 @@
 # Find the full agreement at https://github.com/amichael1227/rfModule/blob/master/LICENSE
 
 # Import libraries we need
-import time
 import serial
-import threading
-import sys
+from xmodem import XMODEM
 
 # Sets up the serial port for our RF Modules
 ser = serial.Serial(
@@ -26,3 +24,17 @@ ser = serial.Serial(
   bytesize = serial.EIGHTBITS,
   timeout = 1
 )
+
+
+
+def getc(size, timout = 1):
+  return ser.read(size) or None
+
+def putc(data, timeout = 1):
+  return ser.write(data)
+
+modem = XMODEM(getc, putc)
+
+
+stream = open('/etc/fstab', 'rb')
+modem.send(stream)
