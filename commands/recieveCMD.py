@@ -1,6 +1,20 @@
 #!/usr/bin/env python3
+# File Name:
+# recieveCMD.py
+# Author Information:
+# Andrew Sullivan
+# amsullivan2@wpi.edu
+# Alexander Corey
+# ajcorey@wpi.edu
+# July 14, 2021
+# Decription:
+# This program recieves messages over UART and executes commands based on what that message says.
+# License:
+# Software License Agreement (BSD License)
+# Find the full agreement at https://github.com/amichael1227/rfModule/blob/master/LICENSE
 
-# Import libraries we need
+
+# Import libraries the program need
 import time
 import serial
 import threading
@@ -8,7 +22,7 @@ import threading
 
 # Sets up the serial port for our RF Modules
 ser = serial.Serial(
-  port = '/dev/ttyS0',
+  port = "/dev/ttyS0",
   baudrate = 9600,
   parity = serial.PARITY_NONE,
   stopbits = serial.STOPBITS_ONE,
@@ -69,15 +83,15 @@ def action(arg1):
         time.sleep(1)
         # Depending on the state, do a thing
         if(state == State.IDLE):
-            print('IDLE')
+            print("IDLE")
         elif(state == State.LED_ON):
-            print('LED_ON')
+            print("LED_ON")
         elif(state == State.EMPTY):
-            print('EMPTY')
+            print("EMPTY")
         else:
             pass
 
 
 # Create and start the threads
-getAndSaveThread = threading.Thread(name='getAndSave', target=setState, args=(1,)).start()
-actionThread = threading.Thread(name='action', target=action, args=(1,)).start()
+getAndSaveThread = threading.Thread(name="getAndSave", target=setState, args=(1,)).start()
+actionThread = threading.Thread(name="action", target=action, args=(1,)).start()

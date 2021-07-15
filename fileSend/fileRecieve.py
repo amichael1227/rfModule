@@ -1,23 +1,21 @@
 #!/usr/bin/env python3
 # File Name:
-# sendCMD.py
+# fileRecieve.py
 # Author Information:
 # Andrew Sullivan
 # amsullivan2@wpi.edu
-# Alexander Corey
-# ajcorey@wpi.edu
 # July 14, 2021
 # Decription:
-# This program sends messages over UART for commands to be executed.
+# This program allows for files to be recieved over UART.
 # License:
 # Software License Agreement (BSD License)
 # Find the full agreement at https://github.com/amichael1227/rfModule/blob/master/LICENSE
 
-
-# Import libraries the program needs
+# Import libraries we need
 import time
 import serial
-
+import threading
+import sys
 
 # Sets up the serial port for our RF Modules
 ser = serial.Serial(
@@ -28,12 +26,3 @@ ser = serial.Serial(
   bytesize = serial.EIGHTBITS,
   timeout = 1
 )
-
-
-# Sets up the serial port for our RF Modules
-while 1:
-  # Transmit your message
-  s = input("Please type your message: ")
-  s = s + '\n'
-  ser.write(s.encode())
-  time.sleep(0.25)
