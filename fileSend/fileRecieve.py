@@ -45,7 +45,6 @@ def readAndDecode():
 def getFileName():
     fileName = readAndDecode()
     fileName = fileName.replace('\n', '') + "/" + incomingPath
-    print(fileName)
     time.sleep(1)
 
 

@@ -22,7 +22,7 @@ import sys
 # Sets up the file path for later 
 outgoingPath = os.path.dirname(os.path.abspath(__file__)) + '/Outgoing/'
 print ("Please make sure that the file is in the Outgoing folder!")
-fileName = input("File name with extension: '") + "/" + outgoingPath
+fileName = outgoingPath + "/" + input("File name with extension: ")
 
 
 # Sets up the serial port for our RF Modules
