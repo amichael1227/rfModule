@@ -14,9 +14,11 @@
 # Import libraries we need
 import serial
 from xmodem import XMODEM
+import time
+import os
 
 
-# Sets up the serial port for our RF Modules
+# Sets up the serial port for the RF Modules
 ser = serial.Serial(
   port = "/dev/ttyS0",
   baudrate = 9600,
@@ -25,6 +27,27 @@ ser = serial.Serial(
   bytesize = serial.EIGHTBITS,
   timeout = 1
 )
+
+# Sets up the file path for later 
+incomingPath = os.path.dirname(os.path.abspath(__file__)) + '/Incoming/'
+fileName = ''
+
+# Function to get and decode the fileName
+def readAndDecode():
+    global fileName
+    x = ser.readline()
+    while (x.decode() == ''):
+        x = ser.readline()
+    fileName = x.decode()
+
+
+# Function to recieve the file name
+def getFileName():
+    global fileName
+    readAndDecode()
+    fileName = fileName.replace('\n', '')
+    print(fileName)
+    time.sleep(1)
 
 
 # Defines the function for getting a file
@@ -42,5 +65,6 @@ modem = XMODEM(getc, putc)
 
 
 # Gets and saves the file
+getFileName()
 stream = open('output.txt', 'wb')
 modem.recv(stream)

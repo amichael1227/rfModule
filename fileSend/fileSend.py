@@ -14,6 +14,15 @@
 # Import libraries we need
 import serial
 from xmodem import XMODEM
+import os
+import time
+import sys
+
+
+# Sets up the file path for later 
+outgoingPath = os.path.dirname(os.path.abspath(__file__)) + '/Outgoing/'
+print ("Please make sure that the file is in the Outgoing folder!")
+fileName = input("File name with extension: '")
 
 
 # Sets up the serial port for our RF Modules
@@ -25,6 +34,13 @@ ser = serial.Serial(
   bytesize = serial.EIGHTBITS,
   timeout = 1
 )
+
+
+# Function to transmit the message
+def sendFileName():
+    while 1:
+        ser.write(fileName.encode())
+        time.sleep(1)
 
 
 # Defines the function for getting a file
@@ -42,5 +58,5 @@ modem = XMODEM(getc, putc)
 
 
 # Reads and sends the file
-stream = open('input.txt', 'rb')
-modem.send(stream)
+sendFileName()
+modem.send(open(fileName, 'rb'))

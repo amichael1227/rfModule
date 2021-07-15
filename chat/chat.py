@@ -17,7 +17,7 @@ import serial
 import threading
 import sys
 
-# Sets up the serial port for our RF Modules
+# Sets up the serial port for the RF Modules
 ser = serial.Serial(
   port = "/dev/ttyS0",
   baudrate = 9600,
