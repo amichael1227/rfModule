@@ -14,7 +14,6 @@
 # Import libraries we need
 import serial
 from xmodem import XMODEM
-import time
 import os
 
 
@@ -44,14 +43,12 @@ def readAndDecode():
 # Function to recieve the file name
 def getFileName():
     fileName = readAndDecode()
-    print(fileName)
-    input("enter")
     fileName = incomingPath + fileName.replace('\n', '')
-    time.sleep(1)
+    return fileName
 
 
 # Defines the function for getting a file
-def getc(size, timout = 1):
+def getc(size, timeout = 1):
   return ser.read(size) or None
 
 
@@ -66,6 +63,11 @@ modem = XMODEM(getc, putc)
 
 # Gets and saves the file
 fileName = getFileName()
-stream = open(fileName, 'wb')
-modem.recv(stream)
+file = open(fileName, 'wb')
+modem.recv(file)
+with open(fileName, 'r') as infile, \
+     open(fileName, 'w') as outfile:
+    data = infile.read()
+    data = data.replace("^z", "")
+    outfile.write(data)
 print("File recieved!")
