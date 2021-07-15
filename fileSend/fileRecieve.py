@@ -15,6 +15,7 @@
 import serial
 from xmodem import XMODEM
 
+
 # Sets up the serial port for our RF Modules
 ser = serial.Serial(
   port = "/dev/ttyS0",
@@ -26,15 +27,21 @@ ser = serial.Serial(
 )
 
 
-
+# Defines the function for getting a file
 def getc(size, timout = 1):
   return ser.read(size) or None
 
+
+# Defines the function for sending a file 
 def putc(data, timeout = 1):
   return ser.write(data)
 
+
+# Define the modem
 modem = XMODEM(getc, putc)
 
 
-stream = open('output', 'wb')
-modem.recv(stream)
+# Gets and saves the file
+while 1:
+  stream = open('output.txt', 'wb')
+  modem.recv(stream)
