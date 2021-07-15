@@ -42,6 +42,5 @@ modem = XMODEM(getc, putc)
 
 
 # Gets and saves the file
-while 1:
-  stream = open('output.txt', 'wb')
-  modem.recv(stream)
+stream = open('output.txt', 'wb')
+modem.recv(stream)
