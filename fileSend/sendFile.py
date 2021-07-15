@@ -22,7 +22,8 @@ import sys
 # Sets up the file path for later 
 outgoingPath = os.path.dirname(os.path.abspath(__file__)) + '/Outgoing/'
 print ("Please make sure that the file is in the Outgoing folder!")
-fileName = outgoingPath + input("File name with extension: ")
+fileName = input("File name with extension: ")
+outgoingPath = outgoingPath + fileName
 
 
 # Sets up the serial port for our RF Modules
@@ -58,5 +59,5 @@ modem = XMODEM(getc, putc)
 
 # Reads and sends the file
 sendFileName()
-modem.send(open(fileName, 'rb'))
+modem.send(open(outgoingPath, 'rb'))
 print("File sent!")

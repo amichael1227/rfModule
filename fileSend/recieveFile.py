@@ -29,7 +29,7 @@ ser = serial.Serial(
 )
 
 # Sets up the file path for later 
-incomingPath = os.path.dirname(os.path.abspath(__file__)) + '/Incoming/'
+incomingPath = str(os.path.dirname(os.path.abspath(__file__))) + '/Incoming/'
 
 
 # Function to get and decode the fileName
@@ -44,7 +44,9 @@ def readAndDecode():
 # Function to recieve the file name
 def getFileName():
     fileName = readAndDecode()
-    fileName = fileName.replace('\n', '') + incomingPath
+    print(fileName)
+    input("enter")
+    fileName = incomingPath + fileName.replace('\n', '')
     time.sleep(1)
 
 
