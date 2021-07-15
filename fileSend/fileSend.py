@@ -42,6 +42,5 @@ modem = XMODEM(getc, putc)
 
 
 # Reads and sends the file
-while 1:
-  stream = open('input.txt', 'rb')
-  modem.send(stream)
+stream = open('input.txt', 'rb')
+modem.send(stream)
