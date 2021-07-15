@@ -30,22 +30,21 @@ ser = serial.Serial(
 
 # Sets up the file path for later 
 incomingPath = os.path.dirname(os.path.abspath(__file__)) + '/Incoming/'
-fileName = ''
+
 
 # Function to get and decode the fileName
 def readAndDecode():
-    global fileName
     x = ser.readline()
     while (x.decode() == ''):
         x = ser.readline()
     fileName = x.decode()
+    return fileName
 
 
 # Function to recieve the file name
 def getFileName():
-    global fileName
-    readAndDecode()
-    fileName = fileName.replace('\n', '')
+    fileName = readAndDecode()
+    fileName = fileName.replace('\n', '') + "/" + incomingPath
     print(fileName)
     time.sleep(1)
 
@@ -68,3 +67,4 @@ modem = XMODEM(getc, putc)
 getFileName()
 stream = open('output.txt', 'wb')
 modem.recv(stream)
+print("File recieved!")
