@@ -4,7 +4,7 @@
 # Author Information:
 # Andrew Sullivan
 # amsullivan2@wpi.edu
-# July 14, 2021
+# July 15, 2021
 # Decription:
 # This program allows for files to be recieved over UART.
 # License:
