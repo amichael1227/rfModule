@@ -68,6 +68,6 @@ modem.recv(file)
 with open(fileName, 'r') as infile, \
      open(fileName, 'w') as outfile:
     data = infile.read()
-    data = data.replace("^z", "")
+    data = data.replace("^Z", "")
     outfile.write(data)
 print("File recieved!")
