@@ -67,6 +67,7 @@ modem = XMODEM(getc, putc)
 # Reads and sends the file
 sendFileName()
 file = open(outgoingPath, 'rb')
+readUntil(CRC)
 modem.send(file)
 readUntil()
 print("File sent!")
