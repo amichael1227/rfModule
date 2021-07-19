@@ -4,26 +4,24 @@
 # Author Information:
 # Andrew Sullivan
 # amsullivan2@wpi.edu
-# July 15, 2021
+# July 19, 2021
 # Decription:
-# This program allows for files to be sent over UART.
+# This program allows for files to be sent over UART. Currently appends a bunch of '^Z's to the file though.
 # License:
 # Software License Agreement (BSD License)
 # Find the full agreement at https://github.com/amichael1227/rfModule/blob/master/LICENSE
 
+
 # Import libraries we need
-from sys import stdin
 import serial
-from xmodem import XMODEM, CRC
-from time import sleep
+from xmodem import XMODEM
 import os
-from io import StringIO
 
 
 # Sets up the file path for later 
 outgoingPath = os.path.dirname(os.path.abspath(__file__)) + '/Outgoing/'
 print ("Please make sure that the file is in the Outgoing folder!")
-fileName = stdin("File name with extension: ")
+fileName = input("File name with extension: ")
 outgoingPath = outgoingPath + fileName.replace('\n', '').replace(' ', '')
 
 
@@ -43,21 +41,14 @@ def sendFileName():
       ser.write(fileName.encode())
 
 
-def readUntil(char = None):
-    def serialPortReader():
-        while True:
-            tmp = ser.read(1)
-            if not tmp or (char and char == tmp):
-                break
-            yield tmp
-    return ''.join(serialPortReader())
+# Defines the function for getting a file
+def getc(size, timout = 1):
+  return ser.read(size) or None
 
-def getc(size, timeout=1):
-    return ser.read(size)
 
-def putc(data, timeout=1):
-    ser.write(data)
-    sleep(0.001)
+# Defines the function for sending a file 
+def putc(data, timeout = 1):
+  return ser.write(data)
 
 
 # Define the modem
@@ -67,7 +58,5 @@ modem = XMODEM(getc, putc)
 # Reads and sends the file
 sendFileName()
 file = open(outgoingPath, 'rb')
-readUntil(CRC)
 modem.send(file)
-readUntil()
 print("File sent!")

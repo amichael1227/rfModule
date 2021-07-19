@@ -4,9 +4,9 @@
 # Author Information:
 # Andrew Sullivan
 # amsullivan2@wpi.edu
-# July 15, 2021
+# July 19, 2021
 # Decription:
-# This program allows for files to be recieved over UART.
+# This program allows for files to be recieved over UART. Currently appends a bunch of '^Z's to the file though.
 # License:
 # Software License Agreement (BSD License)
 # Find the full agreement at https://github.com/amichael1227/rfModule/blob/master/LICENSE
@@ -68,6 +68,6 @@ modem.recv(file)
 with open(fileName, 'r') as infile, \
      open(fileName, 'w') as outfile:
     data = infile.read()
-    data = data.replace("^Z", "")
+    data = data.replace('^Z', '')
     outfile.write(data)
 print("File recieved!")
